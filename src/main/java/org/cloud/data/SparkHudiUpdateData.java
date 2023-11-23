@@ -29,7 +29,8 @@ public class SparkHudiUpdateData {
         Dataset trips_df = spark.read().format("org.apache.hudi")
                 .load("file:///D:/sparksetup/sparkdata/trips_table");
 
-        Dataset trips_df_updates =  trips_df.filter(trips_df.col("rider").equalTo("rider-D")).withColumn("fare",trips_df.col("fare").multiply(10));
+        Dataset trips_df_updates =  trips_df.filter(trips_df.col("rider").equalTo("rider-D"))
+                .withColumn("fare",trips_df.col("fare").multiply(10));
         trips_df_updates.write().format("org.apache.hudi").option("hoodie.datasource.write.operation","upsert")
                 .option(PARTITIONPATH_FIELD_NAME.key(),"city").option("hoodie.table.name","trips_table").mode(SaveMode.Append).save("file:///D:/sparksetup/sparkdata/trips_table");
     }

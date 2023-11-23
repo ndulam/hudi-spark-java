@@ -15,4 +15,4 @@ Setup Spark on Windows 11
 11. Edit Path variable
 12. ![img_6.png](img_6.png)
 13. Add %SPARK_HOME%\bin and %HADOOP_HOME%\bin as shown below to Path variable
-14. ![img_7.png](img_7.png)
+14. ![img_7.png](img_7.png) 

@@ -31,7 +31,6 @@ public class SparkHudiReadData {
         //Read table data
         Dataset trips_df = spark.read().format("org.apache.hudi").load("file:///D:/sparksetup/sparkdata/trips_table");
         trips_df.createOrReplaceTempView("trips_table");
-        spark.sql("SELECT uuid, fare, ts, rider, driver, city FROM  trips_table WHERE fare > 20.0").show();
         spark.sql("SELECT * FROM  trips_table").show(false);
     }
 }
