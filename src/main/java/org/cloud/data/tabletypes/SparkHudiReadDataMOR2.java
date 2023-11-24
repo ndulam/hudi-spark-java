@@ -4,7 +4,7 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.SparkSession;
 
-public class SparkHudiReadData2 {
+public class SparkHudiReadDataMOR2 {
     public static void main(String[] args) {
         System.out.println("Hello World");
         System.setProperty("hadoop.home.dir", "D:\\sparksetup\\hadoop");
