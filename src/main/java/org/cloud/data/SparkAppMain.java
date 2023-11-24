@@ -21,7 +21,7 @@ public class SparkAppMain {
         //JavaSparkContext sparkContext = new JavaSparkContext(sparkConf);
 
         //Dataset dataset = spark.read().csv("nationalparks.csv");
-        spark.read().parquet("file:///D:/sparksetup/sparkdata/trips_table/san_francisco/*.parquet").show(false);
+        spark.read().parquet("file:///D:/sparksetup/sparkdata/trips_table_mor/san_francisco/*.parquet").show(false);
 
         //System.out.println("Number of lines in file = " + dataset.count());
     }
