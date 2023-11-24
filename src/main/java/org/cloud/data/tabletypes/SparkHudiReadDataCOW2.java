@@ -29,6 +29,6 @@ public class SparkHudiReadDataCOW2 {
 
         //Read table as parquet files
         System.out.println("Reading as Parquetfile");
-        spark.read().parquet("file:///D:/sparksetup/sparkdata/trips_table_cow/san_francisco/*.parquet").show(false);
+        spark.read().parquet("file:///D:/sparksetup/sparkdata/trips_table_cow/san_francisco/b8c57055-b1c5-47f6-af6e-993db606a9d5-0_0-7-23_20231124071213714.parquet").show(false);
     }
 }
