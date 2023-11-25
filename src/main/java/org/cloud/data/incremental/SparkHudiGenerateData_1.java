@@ -42,7 +42,8 @@ public class SparkHudiGenerateData_1 {
 
         dataset.write().format("org.apache.hudi").option("hoodie.table.name","employee_table").option("hoodie.datasource.write.recordkey.field", "employee_id").
                 option("hoodie.datasource.write.precombine.field", "ts")
-                .option("hoodie.table.type",HoodieTableType.MERGE_ON_READ.name()).mode(SaveMode.Overwrite)
+//                .option("hoodie.datasource.write.table.type",HoodieTableType.MERGE_ON_READ.name())
+                .mode(SaveMode.Overwrite)
                 .save("file:///D:/sparksetup/sparkdata/employee_table");
 
     }
