@@ -1,10 +1,10 @@
-package org.cloud.data.cdc;
+package org.cloud.data;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.SparkSession;
 
-public class SparkHudiReadDataCDC_4 {
+public class SparkHudiReadDataOnehouse {
     public static void main(String[] args) {
         System.out.println("Hello World");
         System.setProperty("hadoop.home.dir", "D:\\sparksetup\\hadoop");
@@ -18,17 +18,16 @@ public class SparkHudiReadDataCDC_4 {
                 .set("spark.sql.catalog.spark_catalog","org.apache.spark.sql.hudi.catalog.HoodieCatalog")
                 .set("spark.sql.extensions","org.apache.spark.sql.hudi.HoodieSparkSessionExtension")
                 .set("spark.kryo.registrator","org.apache.spark.HoodieSparkKryoRegistrar")
-                .set("spark.sql.warehouse.dir", "file:///C:/tmp/spark_shell/spark_warehouse");
+                .set("spark.sql.warehouse.dir", "file:///D:/sparksetup/iceberg/spark_warehouse");
         SparkSession spark = SparkSession.builder().appName("Spark Hudi Read").config(sparkConf).getOrCreate();
 
         //Read table data
-        Dataset trips_df = spark.read().format("org.apache.hudi")
-                .option("hoodie.datasource.read.begin.instanttime",0)
-                .option("hoodie.datasource.query.type", "incremental")
-                .option("hoodie.datasource.query.incremental.format","cdc")
-                .load("file:///D:/sparksetup/sparkdata/trips_table_cdc");
-        trips_df.createOrReplaceTempView("trips_table_cdc");
-        spark.sql("SELECT * FROM  trips_table_cdc").show(false);
+        Dataset trips_df = spark.read().format("org.apache.hudi").load("file:///D:/sparksetup/iceberg/spark_warehouse/uber/trips/data");
 
+        trips_df.show();
+
+
+        //trips_df.createOrReplaceTempView("trips_table");
+        //spark.sql("SELECT * FROM  trips_table").show(false);
     }
 }

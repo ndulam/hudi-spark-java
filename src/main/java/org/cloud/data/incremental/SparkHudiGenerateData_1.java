@@ -34,6 +34,7 @@ public class SparkHudiGenerateData_1 {
         List<Row> nums = new ArrayList<Row>();
         nums.add(RowFactory.create(1700740753L,"1","Naresh Dulam1"));
         nums.add(RowFactory.create(1700740753L,"2","Naresh Dulam2"));
+        nums.add(RowFactory.create(1700740753L,"2","Naresh Dulam3"));
         //Dataset<Row> dataset = spark.createDataFrame(nums, structType);
 
         Dataset<Row> dataset =  spark.read().option("header",true).csv("employee_batch1.csv");

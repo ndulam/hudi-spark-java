@@ -23,7 +23,7 @@ public class SparkHudiReadTimeTravel_4 {
         SparkSession spark = SparkSession.builder().appName("Spark Hudi Read").config(sparkConf).getOrCreate();
 
         //Read table data before update
-        Dataset trips_df = spark.read().format("org.apache.hudi").option("as.of.instant","20231123071055436").load("file:///D:/sparksetup/sparkdata/trips_table_timetravel");
+        Dataset trips_df = spark.read().format("org.apache.hudi").option("as.of.instant","20231126053251801").load("file:///D:/sparksetup/sparkdata/trips_table_timetravel");
         trips_df.createOrReplaceTempView("trips_table_timetravel");
         spark.sql("SELECT * FROM  trips_table_timetravel").show();
 

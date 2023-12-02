@@ -1,5 +1,6 @@
 package org.cloud.data.cdc;
 
+import org.apache.hudi.common.model.HoodieTableType;
 import org.apache.spark.SparkConf;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.SaveMode;
@@ -37,7 +38,9 @@ public class SparkHudiUpdateData_3 {
         // Update fare for riders: rider-F
         Dataset trips_df_dele =  trips_df.filter(trips_df.col("rider").equalTo("rider-F"));
         trips_df_dele.write().format("org.apache.hudi").option("hoodie.datasource.write.operation","delete")
-                .option(PARTITIONPATH_FIELD_NAME.key(),"city").option("hoodie.table.cdc.enabled",true).option("hoodie.table.name","trips_table_cdc")
+                .option("hoodie.table.type", HoodieTableType.COPY_ON_WRITE.name())
+                .option(PARTITIONPATH_FIELD_NAME.key(),"city").option("hoodie.table.cdc.enabled",true)
+                .option("hoodie.table.name","trips_table_cdc")
                 .mode(SaveMode.Append).save("file:///D:/sparksetup/sparkdata/trips_table_cdc");
 
     }
